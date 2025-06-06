@@ -22,11 +22,13 @@
 
                 <h3>Create School</h3>
                 <form id="school" class="mb-4">
+                    <input name="name" type="text" class="form-control mb-2" required placeholder="Name">
                     <button type="submit" class="btn btn-dark w-100">Create new School</button>
                 </form>
 
                 <h3>Create Classroom</h3>
                 <form id="classroom" class="mb-4">
+                    <input name="name" type="text" class="form-control mb-2" required placeholder="Name">
                     <input name="size" type="text" class="form-control mb-2" required placeholder="Size">
                     <input name="seats" type="number" class="form-control mb-2" required placeholder="Number of Seats">
                     <div class="form-check d-flex justify-content-center mb-2">
@@ -38,6 +40,20 @@
 
                 <h3>Create Student</h3>
                 <form id="student" class="mb-4">
+                    <input name="firstname" type="text" class="form-control mb-2" required placeholder="Firstname">
+                    <input name="lastname" type="text" class="form-control mb-2" required placeholder="Lastname">
+                    <select name="track" class="form-control mb-2" required>
+                        <option value="default" disabled selected>Track</option>
+                        <option value="0">WI</option>
+                        <option value="1">WL</option>
+                        <option value="2">WM</option>
+                        <option value="3">WP</option>
+                        <option value="4">CI</option>
+                        <option value="5">CB</option>
+                        <option value="6">CT</option>
+                        <option value="7">MD</option>
+                        <option value="8">MP</option>
+                    </select>
                     <select name="schoolclass" class="form-control mb-2" required>
                         <option value="default" disabled selected>Schoolclass</option>
                         <option value="0">3aWI</option>
