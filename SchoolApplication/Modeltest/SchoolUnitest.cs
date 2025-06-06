@@ -119,6 +119,11 @@ namespace ModelsUnitest
         {
             _school.AddStudent(_studentM);
             _school.AddStudent(_studentW);
+            // add another student from the same class as _studentM so the
+            // smaller room is insufficient
+            var studentM2 = new Student("Jim", "Beam", Person.Genders.m,
+                new DateTime(2002, 1, 1), Student.SchoolClasses.Class1a, Student.Tracks.WI);
+            _school.AddStudent(studentM2);
             _school.AddClassroom(_room1);
             _school.AddClassroom(_room2);
             Assert.That(_school.CanClassFitInRoom(Student.SchoolClasses.Class1a.ToString(), _room1), Is.True);
