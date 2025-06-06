@@ -1,0 +1,36 @@
+body{
+  background: linear-gradient(#fdfbfb,#ebedee);
+  min-height:100vh;
+}
+.form-container{
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  padding:20px;
+  margin-bottom:20px;
+}
+.output-container{
+  margin-top:20px;
+}
+.output-container > div{
+  background:#fff;
+  border:1px solid #dee2e6;
+  border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+.btn-custom{
+  background-color:#1d6fa5;
+  border-color:#1d6fa5;
+}
+.btn-custom:hover{
+  background-color:#155d85;
+  border-color:#155d85;
+}
+.card-form{
+  margin-bottom:1.5rem;
+  padding:1rem;
+  border:1px solid #dee2e6;
+  border-radius:8px;
+  background-color:#f8f9fa;
+}
+h1,h2,h3{font-weight:700;}
