@@ -7,22 +7,43 @@ function addOpt(sel, v, t){ document.querySelectorAll(sel).forEach(s => s.add(ne
 function log(txt){ const o=document.getElementById('output'); o.textContent=txt+'\n'+o.textContent; }
 function set(id,txt){ document.getElementById(id).textContent=txt; }
 
+async function loadSchools(){
+  const schools = await get(api('schools'));
+  schools.forEach(s => addOpt('.school-dropdown', s.id, s.name || `School ${s.id}`));
+}
+
+window.addEventListener('DOMContentLoaded', loadSchools);
+
 // ----- Create -----
-document.getElementById('school').onsubmit   = async e => { e.preventDefault();
-    const {id}=await post(api('schools'),{});
-    addOpt('.school-dropdown',id,`School ${id}`); log(`School ${id} created`);
+document.getElementById('school').onsubmit = async e => {
+  e.preventDefault();
+  const f=e.target, dto={ name:f.name.value };
+  const {id}=await post(api('schools'),dto);
+  const text=dto.name||`School ${id}`;
+  addOpt('.school-dropdown',id,text); log(`School ${id} created`); f.reset();
 };
 
-document.getElementById('classroom').onsubmit = async e => { e.preventDefault();
-    const f=e.target, dto={ size:f.size.value, seats:+f.seats.value, cynap:f.cynap.checked };
-    const r=await post(api('classrooms'),dto);
-    addOpt('.classroom-dropdown',r.id,`Room ${r.id}`); log(`Room ${r.id} created`); f.reset();
+document.getElementById('classroom').onsubmit = async e => {
+  e.preventDefault();
+  const f=e.target, dto={ name:f.name.value, size:f.size.value, seats:+f.seats.value, cynap:f.cynap.checked };
+  const r=await post(api('classrooms'),dto);
+  const text=dto.name||`Room ${r.id}`;
+  addOpt('.classroom-dropdown',r.id,text); log(`Room ${r.id} created`); f.reset();
 };
 
-document.getElementById('student').onsubmit  = async e => { e.preventDefault();
-    const f=e.target, dto={ schoolClass:f.schoolclass.value, gender:f.gender.value, birthdate:f.birthdate.value };
-    const r=await post(api('students'),dto);
-    addOpt('.student-dropdown',r.id,`${r.vorname} ${r.nachname}`); log(`Student ${r.id} created`); f.reset();
+document.getElementById('student').onsubmit = async e => {
+  e.preventDefault();
+  const f=e.target, dto={
+    firstname:f.firstname.value,
+    lastname:f.lastname.value,
+    track:f.track.value,
+    schoolClass:f.schoolclass.value,
+    gender:f.gender.value,
+    birthdate:f.birthdate.value
+  };
+  const r=await post(api('students'),dto);
+  const text=`${dto.firstname} ${dto.lastname}`;
+  addOpt('.student-dropdown',r.id,text); log(`Student ${r.id} created`); f.reset();
 };
 
 // ----- Relations -----
